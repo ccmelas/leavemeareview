@@ -4,9 +4,10 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-import Home from './components/Home';
-import Login from './components/Login';
-import Register from './components/Register';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import AddReview from './pages/AddReview';
 
 const Routing = (
     <Router>
@@ -14,6 +15,7 @@ const Routing = (
             <Route exact path="/" component={ Home }></Route>
             <Route path="/login" component={ Login }></Route>
             <Route path="/register" component={ Register }></Route>
+            <Route path="/review/:username" component={ AddReview }></Route>
         </Switch>
     </Router>
 )

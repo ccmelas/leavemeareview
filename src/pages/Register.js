@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Button from './Button';
-import MainBG from './MainBG';
-import Separator from './Separator';
-import AuthForm from './AuthForm';
-import InputGroup from './InputGroup';
+
+import Button from './../components/Button';
+import MainBG from './../components/MainBG';
+import Separator from './../components/Separator';
+import AuthForm from './../components/AuthForm';
+import InputGroup from './../components/InputGroup';
 
 
 class Register extends Component {

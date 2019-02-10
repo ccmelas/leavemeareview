@@ -37,6 +37,15 @@ const Form = styled.form`
         font-weight: bold;
         text-decoration: none;
     }
+
+    .right {
+        text-align: right;
+    }
+
+    .d-flex {
+        display: flex;
+        justify-content: space-between;
+    }
 `;
 
 const AuthForm = (props) => (

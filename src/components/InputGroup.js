@@ -8,7 +8,7 @@ const StyledInputGroup = styled.div`
         margin-bottom: 5px;
     }
 
-    input {
+    input, textarea {
         display: block;
         width: 100%;
         border-radius: 5px;
@@ -19,7 +19,7 @@ const StyledInputGroup = styled.div`
         font-family: Monaco, sans-serif;
     }
 
-    input:focus {
+    input:focus, textarea:focus {
         outline: 0;
         border-width: 2px;
     }
@@ -28,7 +28,7 @@ const StyledInputGroup = styled.div`
 
 const InputGroup = (props) => (
     <StyledInputGroup>
-        <input {...props}/>
+        { props.type === "textarea"  ? <textarea {...props}></textarea> : <input {...props}/>}
     </StyledInputGroup>
 );
 

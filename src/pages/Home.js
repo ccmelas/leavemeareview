@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import MainBG from './MainBG';
-import StarColumn from './StarColumn';
-import Button from './Button';
+import MainBG from './../components/MainBG';
+import StarColumn from './../components/StarColumn';
+import Button from './../components/Button';
 
 const TextContainer = styled.div`
     height: 100vh;

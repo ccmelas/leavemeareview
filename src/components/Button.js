@@ -5,12 +5,12 @@ import styled from 'styled-components'
 
 const StyledButton = styled.button`
     color: ${props => props.scheme === 'google' ? '#FFFFFF': '#6136D8'};
-    padding: ${props => props.length === 'block' ? '.8em' : '1em 2em'};
+    padding: ${props => props.small ? '.8em' : '1em 2em'};
     text-transform: uppercase;
     font-weight: ${props => props.bold ? 'bold': 'normal'};
     background: ${props => props.scheme === 'google' ? '#C44040': '#EAC93F'};
     border-radius: 5px;
-    font-size: 90%;
+    font-size: ${props => props.small ? '70%' : '80%'};
     letter-spacing: .05em;
     border: 0;
     transition: .5s all ease-in-out;
@@ -29,11 +29,12 @@ const StyledButton = styled.button`
 
 class Button extends Component {
     render() {
-        const { bold, type } = this.props;
+        const { bold, type, small } = this.props;
 
         return (
             <StyledButton {...this.props}
                 bold={Boolean(bold)} 
+                small={Boolean(small)} 
                 type={type}> 
                 {this.props.children}
             </StyledButton>
@@ -43,13 +44,15 @@ class Button extends Component {
 
 Button.propTypes = {
     length: PropTypes.string,
-    scheme: PropTypes.string
+    scheme: PropTypes.string,
+    onClick: PropTypes.func
 };
 
 Button.defaultProps = {
     length: 'auto',
     scheme: 'primary',
-    type: 'button'
+    type: 'button',
+    onClick: () => {}
 };
 
 export default Button;
