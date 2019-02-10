@@ -1,0 +1,30 @@
+header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(purple, indigo);
+    color: white;
+    font-family: 'Lucida Grande', sans-serif;
+}
+
+header h1 {
+    margin-bottom: 2em;
+}
+
+.btn {
+    padding: .6em 1em;
+    background: linear-gradient(white, gray);
+    color: purple;
+    transition: .3s all ease-in;
+}
+
+.btn:hover {
+    color: white;
+    background: purple;
+}
+
+a {
+    text-decoration: none;
+}
