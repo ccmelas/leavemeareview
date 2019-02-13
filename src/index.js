@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import AddReview from './pages/AddReview';
+import Dashboard from './pages/Dashboard';
 
 const Routing = (
     <Router>
@@ -15,6 +16,7 @@ const Routing = (
             <Route exact path="/" component={ Home }></Route>
             <Route path="/login" component={ Login }></Route>
             <Route path="/register" component={ Register }></Route>
+            <Route path="/dashboard" component={ Dashboard }></Route>
             <Route path="/review/:username" component={ AddReview }></Route>
         </Switch>
     </Router>
