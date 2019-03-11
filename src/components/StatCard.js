@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import star from '../images/star-yellow.svg';
@@ -46,12 +47,17 @@ const StyledStatCard = styled.div`
 
 const StatCard = (props) => (
     <StyledStatCard>
-        <div className="number">5</div>
+        <div className="number">{props.value}</div>
         <div className="icon">
             <img src={star} alt="Star Icon"/>
             <p>{props.title}</p>
         </div>
     </StyledStatCard>
 );
+
+StatCard.propTypes = {
+    title: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired
+};
 
 export default StatCard;

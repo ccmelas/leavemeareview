@@ -16,7 +16,7 @@ exports.registerRules = [
 exports.validateRegister = (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(422).json({ message: 'Validation errors', errors: errors.array() });
     }
     next();
 }
@@ -48,5 +48,12 @@ exports.uniqueEmail = async (req, res, next) => {
  */
 exports.register = async (req, res) => {
     const user = await User.create(req.body);
-    res.json({ user });
+    res.json ({
+        message: 'Registration Successful',
+        user: { ...user.toJSON(), password: undefined, avatar: user.avatar || user.gravatar },
+        token: {
+            value: user.generateJWT(),
+            expiry: Date.now() + parseInt(process.env.TOKEN_EXPIRATION, 10)
+        }
+    });
 }

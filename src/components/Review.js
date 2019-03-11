@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import StarColumn from './StarColumn';
 
@@ -41,6 +43,11 @@ const StyledReview = styled.section`
         margin-bottom: 2px;
     }
 
+    .reviewer-portfolio h4 a {
+        color: black;
+        text-decoration: none;
+    }
+
     .reviewer-portfolio p {
         color: grey;
         font-size: 90%;
@@ -77,25 +84,31 @@ const Ratings = styled.div`
     }
 `;
 
-const Review = (props) => (
+const Review = ({ review }) => (
     <StyledReview>
         <div className="reviewer">
             <div className="avatar-container">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxNQULVUPpd_oVlOn1CJT-kRwkWn2gl5X7bzEBQd6xiHruUuhw"
+                <img src={review.reviewer.avatar || review.reviewer.gravatar}
                     alt="Avatar"/>
             </div>
             <div className="reviewer-portfolio">
-                <h4>John Doe</h4>
-                <p>CEO, Doe Industries</p>
+                <h4>
+                    <Link to={`/dashboard/reviews/${review._id}`}>{ review.reviewer.name }</Link>
+                </h4>
+                { review.position && review.company ? <p>{ review.position}, { review.company }</p>: null }
             </div>
         </div>
         <Ratings>
-            <StarColumn stars={5} type="stars" score={3} size="small"></StarColumn>
+            <StarColumn stars={5} type="stars" score={review.rating} size="small"></StarColumn>
             <div className="gap"></div>
             <RatingBar></RatingBar>
         </Ratings>
     </StyledReview>
 );
+
+Review.propTypes = {
+    review: PropTypes.object.isRequired
+};
 
 
 export default Review;

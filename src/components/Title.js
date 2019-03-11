@@ -3,11 +3,12 @@ import styled from 'styled-components';
 
 const StyledTitle = styled.div`
     color: gray;
-    margin-top: 50px;
     margin-bottom: 30px;
     p {
         text-transform: uppercase;
     }
+    border-left: 3px solid #291C71;
+    padding-left: 12px;
 `;
 
 const Title = (props) => (

@@ -1,22 +1,70 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link, Redirect } from 'react-router-dom';
 
 import Button from './../components/Button';
 import MainBG from './../components/MainBG';
 import Separator from './../components/Separator';
 import AuthForm from './../components/AuthForm';
 import InputGroup from './../components/InputGroup';
+import ErrorDisplay from './../components/ErrorDisplay';
 
+import { makeRequest } from './../services/http';
 
 class Login extends Component {
+    state = {
+        email: '',
+        password: '',
+        loading: false,
+        errors: [],
+        redirectToReferrer: false,
+    }
+
+    static propTypes = {
+        onAuthentication: PropTypes.func.isRequired
+    }
+
+    handleChange = name => event => {
+        event.preventDefault();
+        this.setState({ [name]: event.target.value });
+    }
+
     render() {
+        const { errors, loading, redirectToReferrer } = this.state;
+
+        const { from } = this.props.location.state || {
+            from: { pathname: '/dashboard' },
+        };
+
+        if (redirectToReferrer) {
+            return <Redirect to={from} />;
+        }
+
         return (
             <MainBG>
-                <AuthForm>
+                <AuthForm handleSubmit={ this.loginUser }>
                     <h4>Sign in</h4>
-                    <InputGroup type="email" placeholder="E-mail" required="required" />
-                    <InputGroup type="password" placeholder="Password" required="required"/>
-                    <Button length="block" bold type="submit">Login</Button>
+                    { errors.map((error, i) => <ErrorDisplay key={i} text={error}/>) }
+                    <InputGroup
+                        type="email"
+                        placeholder="E-mail"
+                        required="required"
+                        defaultValue="sample@gmail.com"
+                        onChange={this.handleChange('email')} />
+
+                    <InputGroup
+                        type="password"
+                        placeholder="Password"
+                        required="required"
+                        defaultValue="123456"
+                        onChange={this.handleChange('password')} />
+
+                    <Button
+                        length="block"
+                        bold
+                        type="submit"
+                        loading={loading}>Login</Button>
+
                     <p>New here? <Link to="/register">Register</Link></p>
                     <div className="gap"></div>                    
                     <Separator text="or"/>
@@ -25,6 +73,21 @@ class Login extends Component {
                 </AuthForm>
             </MainBG>
         );
+    }
+
+    loginUser = async (event) => {
+        event.preventDefault();
+        this.setState({ loading: true, errors: [] });
+
+        const {email, password} = this.state;
+        const response = await makeRequest('/login', 'post', {email, password});
+
+        if (!response.errors) {
+            this.props.onAuthentication(response.data.user, response.data.token);
+            this.setState({ loading: false, redirectToReferrer: true });
+        } else {
+            this.setState({ loading: false, errors: response.errors});
+        }
     }
 }
 

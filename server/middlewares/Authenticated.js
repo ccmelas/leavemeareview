@@ -11,7 +11,7 @@ const passportMiddleware = () => {
 
   return passport.use(
     new Strategy(options, async (payload, done) => {
-      const user = await User.findById(payload.user_id).select('-password')
+      let user = await User.findById(payload.user_id).select('-password')
       return done(null, user || false)
     })
   )

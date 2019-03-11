@@ -40,7 +40,7 @@ exports.login = async (req, res) => {
     if (user && await user.passwordMatch(password)) {
         return res.json({
             message: 'Login Successful',
-            user: { ...user.toJSON(), password: undefined },
+            user: { ...user.toJSON(), password: undefined, avatar: user.avatar || user.gravatar },
             token: {
                 value: user.generateJWT(),
                 expiry: Date.now() + parseInt(process.env.TOKEN_EXPIRATION, 10)

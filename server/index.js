@@ -17,7 +17,7 @@ mongoose.connection.on('error', (e) => {
 });
 
 // Set port
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 5001);
 
 // Start the server
 app.listen(app.get('port'), () => { 

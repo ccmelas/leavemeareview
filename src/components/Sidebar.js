@@ -32,6 +32,7 @@ const Header = styled.header`
     .avatar-container img {
         width: 100%;
         object-fit: cover;
+        border-radius: 50%;
     }
 `;
 
@@ -40,7 +41,7 @@ const Sidebar = (props) => (
     <StyledSidebar>
         <Header>
             <div className="avatar-container">
-                <img className="avatar" src={avatar} alt="Avatar"/>
+                <img className="avatar" src={props.user.avatar || avatar } alt="Avatar"/>
             </div>
         </Header>
         { props.children }

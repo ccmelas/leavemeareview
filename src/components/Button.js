@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-
-import styled from 'styled-components'
+import styled from 'styled-components';
+// import Loader from "react-loader-spinner";
 
 const StyledButton = styled.button`
     color: ${props => props.scheme === 'google' ? '#FFFFFF': '#6136D8'};
@@ -15,7 +15,7 @@ const StyledButton = styled.button`
     border: 0;
     transition: .5s all ease-in-out;
     font-family: ${props => props.length === 'block' ? 'Verdana, sans-serif' : 'Monaco, sans-serif'};
-    cursor: pointer;
+    cursor: ${props => props.loading ? 'not-allowed': 'pointer'};
     width: ${props => props.length === 'block' ? '100%' : 'auto'};
     :hover {
         color: ${props => props.scheme === 'google' ? '#C44040': '#EAC93F'};;
@@ -29,14 +29,15 @@ const StyledButton = styled.button`
 
 class Button extends Component {
     render() {
-        const { bold, type, small } = this.props;
+        const { bold, type, small, loading } = this.props;
 
         return (
             <StyledButton {...this.props}
+                disabled={loading ? 'disabled': false}
                 bold={Boolean(bold)} 
                 small={Boolean(small)} 
                 type={type}> 
-                {this.props.children}
+                {loading ? 'Please wait...' : this.props.children}
             </StyledButton>
         );
     }   

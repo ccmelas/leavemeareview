@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -9,6 +10,9 @@ const Form = styled.form`
     width: 20%;
     @media (max-width: 600px) {
         width: 70%;
+    }
+    @media (min-width: 601px) and (max-width: 1000px) {
+        width: 40%;
     }
     margin: 0 auto;
     position: relative;
@@ -49,9 +53,17 @@ const Form = styled.form`
 `;
 
 const AuthForm = (props) => (
-    <Form>
+    <Form onSubmit={props.handleSubmit}>
         {props.children}
     </Form>
 );
+
+AuthForm.propTypes = {
+    handleSubmit: PropTypes.func
+};
+
+AuthForm.defaultProps = {
+    handleSubmit: () => {}
+};
 
 export default AuthForm;
