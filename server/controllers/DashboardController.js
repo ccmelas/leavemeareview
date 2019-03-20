@@ -8,8 +8,11 @@ const Review = require('../models/Review');
  */
 exports.index = async (req, res) => {
     const reviewCount = await Review.find({ owner: req.user._id }).count();
+
+    const skip = reviewCount - 5;
+
     const reviews = await Review.find({ owner: req.user._id })
-                                .skip(reviewCount - 5)
+                                .skip(skip < 0 ? 0 : skip)
                                 .limit(5)
                                 .populate('reviewer');
     res.json({ reviews, reviewCount });

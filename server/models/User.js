@@ -26,8 +26,9 @@ const UserSchema = new Schema({
         lowercase: true,
     },
     password: String,
-    avatar: String
-}, { toJSON: { virtuals: true }});
+    avatar: String,
+    googleId: String,
+}, { toJSON: { virtuals: true, getters: true }});
 
 
 UserSchema.virtual('gravatar').get(function() {

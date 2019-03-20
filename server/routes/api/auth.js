@@ -15,4 +15,10 @@ router.post('/login',
     LoginController.validateLogin,
     LoginController.login);
 
+router.get('/login/google/url',
+    LoginController.getGoogleSignInUrl);
+
+router.get('/login/google',
+    LoginController.googleSignIn);
+
 module.exports = router;

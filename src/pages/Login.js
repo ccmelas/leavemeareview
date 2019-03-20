@@ -29,6 +29,30 @@ class Login extends Component {
         this.setState({ [name]: event.target.value });
     }
 
+    startGoogleAuth = async () => {
+        this.setState({ loading: true, errors: [] });
+        const { code } = await window.auth2.grantOfflineAccess();
+        const response = await makeRequest(`/login/google?code=${code}`);
+        this.loginUser(response);
+    } 
+
+    startEmailPasswordAuth = async (event) => {
+        event.preventDefault();
+        this.setState({ loading: true, errors: [] });
+        const {email, password} = this.state;
+        const response = await makeRequest('/login', 'post', {email, password});
+        this.loginUser(response);
+    }
+
+    loginUser = (response) => {
+        if (!response.errors) {
+            this.props.onAuthentication(response.data.user, response.data.token);
+            this.setState({ loading: false, redirectToReferrer: true });
+        } else {
+            this.setState({ loading: false, errors: response.errors});
+        }
+    }
+
     render() {
         const { errors, loading, redirectToReferrer } = this.state;
 
@@ -42,7 +66,7 @@ class Login extends Component {
 
         return (
             <MainBG>
-                <AuthForm handleSubmit={ this.loginUser }>
+                <AuthForm handleSubmit={ this.startEmailPasswordAuth }>
                     <h4>Sign in</h4>
                     { errors.map((error, i) => <ErrorDisplay key={i} text={error}/>) }
                     <InputGroup
@@ -69,25 +93,11 @@ class Login extends Component {
                     <div className="gap"></div>                    
                     <Separator text="or"/>
                     <div className="gap"></div>
-                    <Button length="block" scheme="google">Sign in with Google</Button>
+                    <Button length="block" scheme="google"
+                        onClick={this.startGoogleAuth}>Sign in with Google</Button>
                 </AuthForm>
             </MainBG>
         );
-    }
-
-    loginUser = async (event) => {
-        event.preventDefault();
-        this.setState({ loading: true, errors: [] });
-
-        const {email, password} = this.state;
-        const response = await makeRequest('/login', 'post', {email, password});
-
-        if (!response.errors) {
-            this.props.onAuthentication(response.data.user, response.data.token);
-            this.setState({ loading: false, redirectToReferrer: true });
-        } else {
-            this.setState({ loading: false, errors: response.errors});
-        }
     }
 }
 
