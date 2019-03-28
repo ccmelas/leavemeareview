@@ -6,4 +6,7 @@ router.get('/profile',
     Authenticated.middleware(),
     UserController.profile);
 
+router.get('/search', 
+    UserController.findUser);
+
 module.exports = router;

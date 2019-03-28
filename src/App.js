@@ -39,7 +39,9 @@ class App extends Component {
 							<Register location={location} onAuthentication={this.handleAuthentication}/>
 						)}></Route>
 						<PrivateRoute path="/dashboard" component={ Dashboard }></PrivateRoute>
-						<Route path="/review/:username" component={ AddReview }></Route>
+						<Route path="/review/:username" render={({ match }) => (
+							<AddReview match={match} onAuthentication={this.handleAuthentication}/>
+						)}></Route>
 						<Route component={NotFound}></Route>
 					</Switch>
 				</Router>

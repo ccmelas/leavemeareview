@@ -61,6 +61,13 @@ function extractUser(data) {
 /**
  * Part 2: Take the "code" parameter which Google gives us once when the user logs in, then get the user's email and id.
  */
+const getGoogleTokenFromCode = async (code) => {
+    const auth = createConnection()
+    const data = await auth.getToken(code)
+    return data.tokens
+}
+
+
 exports.getGoogleAccountFromCode = async (code) => {
     const auth = createConnection();
     const data = await auth.getToken(code);

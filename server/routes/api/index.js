@@ -4,7 +4,8 @@ const userRoutes = require('./user');
 const reviewRoutes = require('./reviews');
 const dashboardRoutes = require('./dashboard');
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    
     res.json({ message: 'Hi. This is the "Leave me a Review" API' });
 })
 

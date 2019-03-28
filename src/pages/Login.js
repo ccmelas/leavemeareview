@@ -94,7 +94,8 @@ class Login extends Component {
                     <Separator text="or"/>
                     <div className="gap"></div>
                     <Button length="block" scheme="google"
-                        onClick={this.startGoogleAuth}>Sign in with Google</Button>
+                        onClick={this.startGoogleAuth}
+                        loading={loading}>Sign in with Google</Button>
                 </AuthForm>
             </MainBG>
         );
