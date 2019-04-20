@@ -17,11 +17,11 @@ app.use(express.static(path.resolve(`${__dirname}/../`, "build", "static")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-app.get("/", (req, res) => {
-    console.log('here');
-  res.sendFile(path.resolve(`${__dirname}/../`, "build", "index.html"));
-});
 
 app.use('/api/', apiRoutes);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/../`, "build", "index.html"));
+});
 
 module.exports = app;
