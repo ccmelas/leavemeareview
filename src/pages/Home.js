@@ -49,7 +49,7 @@ const Home = () => (
             <StarColumn stars={5}></StarColumn>
             <p>
                 Get verifiable reviews from your clients for those 
-                awesome projects you’ve skilfully executed.
+                awesome projects you’ve skillfully executed.
             </p>
             <Link to="/login">
                 <Button>GET STARTED</Button>

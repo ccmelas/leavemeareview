@@ -21,7 +21,7 @@ const DashboardDisplay = ({ reviews, reviewCount }) => (
             <StatCard title="Reviews" value={`${reviewCount}`}></StatCard>
         </FlexRow>
         <Title text="Recent Reviews"></Title>
-        {reviews.map(review => <Review key={review.id} review={review}></Review>)}
+        {reviews.map(review => <Review key={review._id} review={review}></Review>)}
     </section>
 );
 

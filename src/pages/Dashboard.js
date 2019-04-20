@@ -31,6 +31,11 @@ const DashboardContentArea = styled.section`
 
 
 class Dashboard extends Component {
+    logout = (event) => {
+        event.preventDefault();
+        this.props.onLogout();
+    }
+
     render () {
         return (
             <UserConsumer>
@@ -60,9 +65,9 @@ class Dashboard extends Component {
                                             </NavLink>
                                         </li>
                                         <li>
-                                            <a href="#logout">
+                                            <button onClick={this.logout}>
                                                 Logout
-                                            </a>
+                                            </button>
                                         </li>
                                     </ul>
                                 </Menu>

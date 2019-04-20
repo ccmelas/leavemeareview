@@ -73,14 +73,12 @@ class Login extends Component {
                         type="email"
                         placeholder="E-mail"
                         required="required"
-                        defaultValue="sample@gmail.com"
                         onChange={this.handleChange('email')} />
 
                     <InputGroup
                         type="password"
                         placeholder="Password"
                         required="required"
-                        defaultValue="123456"
                         onChange={this.handleChange('password')} />
 
                     <Button

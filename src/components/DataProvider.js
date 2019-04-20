@@ -54,8 +54,6 @@ export class DataProvider extends Component {
         if (errors.length) {
             return errors.map(error => <ErrorDisplay text={error}/>)
         }
-
-        console.log(!loading, isDataEmpty(data));
         const showNoData = !loading && isDataEmpty(data);
         
         return (

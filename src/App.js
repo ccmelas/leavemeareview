@@ -22,8 +22,30 @@ class App extends Component {
 	};
 
 	handleAuthentication = (user, token) => {
+		window.localStorage.setItem("authUser", JSON.stringify(user));
+		window.localStorage.setItem("token", JSON.stringify(token));
 		this.setState({ user, token });
 	};
+
+	componentWillMount() {
+		const user = window.localStorage.getItem("authUser");
+		const token = window.localStorage.getItem("token");
+
+		const parsedToken = token && JSON.parse(token);
+		
+		if (parsedToken && parsedToken.expiry > Date.now()) {
+			this.setState({
+				user: JSON.parse(user),
+				token: parsedToken
+			});	
+		}
+	}
+
+	handleLogout = () => {
+		window.localStorage.removeItem("authUser");
+		window.localStorage.removeItem("token");
+		this.setState({ user: null, token: null});
+	}
 	
   	render() {
 		const { user, token } = this.state;
@@ -38,7 +60,9 @@ class App extends Component {
 						<Route path="/register" render={({ location }) => (
 							<Register location={location} onAuthentication={this.handleAuthentication}/>
 						)}></Route>
-						<PrivateRoute path="/dashboard" component={ Dashboard }></PrivateRoute>
+						<PrivateRoute path="/dashboard" render={() => (
+							<Dashboard onLogout={this.handleLogout}/>
+						)}></PrivateRoute>
 						<Route path="/review/:username" render={({ match }) => (
 							<AddReview match={match} onAuthentication={this.handleAuthentication}/>
 						)}></Route>
