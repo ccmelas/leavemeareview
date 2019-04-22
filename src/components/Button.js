@@ -9,8 +9,8 @@ const StyledButton = styled.button`
     text-transform: uppercase;
     font-weight: ${props => props.bold ? 'bold': 'normal'};
     background: ${props => props.scheme === 'google' ? '#C44040': '#EAC93F'};
-    border-radius: 5px;
-    font-size: ${props => props.small ? '70%' : '80%'};
+    border-radius: .5rem;
+    font-size: ${props => props.small ? '.7rem' : '1rem'};
     letter-spacing: .05em;
     border: 0;
     transition: .5s all ease-in-out;
@@ -20,6 +20,7 @@ const StyledButton = styled.button`
     :hover {
         color: ${props => props.scheme === 'google' ? '#C44040': '#EAC93F'};;
         background: ${props => props.scheme === 'google' ? '#FFFFFF': '#6136D8'};
+        border: ${props => props.scheme === 'google' ? '1px solid #C44040' : 'none'};
     }
     :focus {
         outline: 0;

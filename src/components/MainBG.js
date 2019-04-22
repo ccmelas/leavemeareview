@@ -1,17 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import media from './styles/media';
+
 const StyledBG = styled.header`
     min-height: 100vh;
-    background-image: linear-gradient(130deg, rgba(101, 55, 226, 1) 30%, rgba(41, 28, 113, 0.8)), url('/images/favorite-slanted.svg');
+    background-image: linear-gradient(130deg, ${ props => props.theme.colorPrimary } 30%, rgba(41, 28, 113, .9)), url('/images/favorite-slanted.svg');
     background-repeat: no-repeat, no-repeat;
     background-position: center, 55vw center;
     background-size: 100%, 70%;
-    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    /* box-sizing: border-box; */
 
-    @media (max-width: 600px) {
-        background-position: center, 40vw center;
-    }
+    ${media.phone`
+        padding-right: 1.5rem;
+        padding-left: 1.5rem;
+    `}
 `;
 
 const MainBG = (props) => (

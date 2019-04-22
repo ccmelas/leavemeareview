@@ -5,7 +5,6 @@ import AuthForm from '../components/AuthForm';
 import InputGroup from '../components/InputGroup';
 import SelectInputGroup from '../components/SelectInputGroup';
 import Button from '../components/Button';
-import Separator from './../components/Separator';
 import { DataProvider } from '../components/DataProvider';
 import { UserConsumer } from './../App';
 
@@ -25,10 +24,6 @@ class AddReviewDisplay extends Component {
         position: '',
     }
 
-    // componentDidMount() {
-    //     const { user } = this.props;
-    //     this.setState({ user });
-    // }
 
     startGoogleAuth = async () => {
         this.setState({ loading: true, errors: [] });
@@ -88,8 +83,7 @@ class AddReviewDisplay extends Component {
         } else if (!user) {
             return (
                 <div>
-                    <h4>Please login to proceed</h4>
-                    <Separator text="google"/>
+                    <h6>Please login to proceed</h6>
                     <div className="gap"></div>
                     <Button length="block" scheme="google"
                             onClick={this.startGoogleAuth}

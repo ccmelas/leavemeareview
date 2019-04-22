@@ -2,39 +2,42 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import media from './styles/media';
+
 const Form = styled.form`
     background: white;
-    padding: 2em;
+    padding: 2rem;
     box-shadow: 1px 1px 4px gray;
     border-radius: 5px;
-    width: 20%;
-    @media (max-width: 600px) {
-        width: 70%;
-    }
-    @media (min-width: 601px) and (max-width: 1000px) {
-        width: 40%;
-    }
+    width: 25%;
     margin: 0 auto;
     position: relative;
-    top: 10em;
+    
+    ${media.tabletPort`
+        width: 40%;
+    `}
+
+    ${media.phone`
+        width: 90%;
+    `}
 
     div.gap {
-        height: 15px;
+        height: 1.5rem;
     }
 
     h4 {
-        color: #6136D8;
+        color: ${props => props.theme.colorPrimary};
         text-transform: uppercase;
-        font-family: Verdana;
-        font-size: 80%;
-        margin-bottom: 30px;
+        font-family: ${props => props.theme.fontHeaderTwo};
+        font-size: 1.5rem;
+        margin-bottom: 3rem;
     }
 
     p, p a {
         color: grey;
         font-family: Monaco, sans-serif;
-        font-size: 80%;
-        margin-top: 20px;
+        font-size: 1rem;
+        margin-top: 2rem;
     }
 
     p a {

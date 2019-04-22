@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -14,6 +15,15 @@ const UserContext = React.createContext({ user: null });
 export const UserConsumer = UserContext.Consumer;
 const UserProvider = UserContext.Provider;
 
+
+const theme = {
+	colorPrimary: '#6537e2',
+	colorSecondary: '#EAC93F',
+	colorAccent: '#6537E2',
+	colorWhite: '#FFF',
+	fontHeader: "'Lucida Grande', sans-serif",
+	fontHeaderTwo: "Verdana"
+};
 
 class App extends Component {
 	state = {
@@ -51,24 +61,26 @@ class App extends Component {
 		const { user, token } = this.state;
 		return (
 			<UserProvider value={{ user, token }}>
-				<Router>
-					<Switch>
-						<Route exact path="/" component={ Home }></Route>
-						<Route path="/login" render={({ location }) => (
-							<Login location={location} onAuthentication={this.handleAuthentication}></Login>
-						)}></Route>
-						<Route path="/register" render={({ location }) => (
-							<Register location={location} onAuthentication={this.handleAuthentication}/>
-						)}></Route>
-						<PrivateRoute path="/dashboard" render={() => (
-							<Dashboard onLogout={this.handleLogout}/>
-						)}></PrivateRoute>
-						<Route path="/review/:username" render={({ match }) => (
-							<AddReview match={match} onAuthentication={this.handleAuthentication}/>
-						)}></Route>
-						<Route component={NotFound}></Route>
-					</Switch>
-				</Router>
+				<ThemeProvider theme={theme}>
+					<Router>
+						<Switch>
+							<Route exact path="/" component={ Home }></Route>
+							<Route path="/login" render={({ location }) => (
+								<Login location={location} onAuthentication={this.handleAuthentication}></Login>
+							)}></Route>
+							<Route path="/register" render={({ location }) => (
+								<Register location={location} onAuthentication={this.handleAuthentication}/>
+							)}></Route>
+							<PrivateRoute path="/dashboard" render={() => (
+								<Dashboard onLogout={this.handleLogout}/>
+							)}></PrivateRoute>
+							<Route path="/review/:username" render={({ match }) => (
+								<AddReview match={match} onAuthentication={this.handleAuthentication}/>
+							)}></Route>
+							<Route component={NotFound}></Route>
+						</Switch>
+					</Router>
+				</ThemeProvider>
 			</UserProvider>
 		);
   	}

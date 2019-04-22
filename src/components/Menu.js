@@ -3,14 +3,7 @@ import styled from 'styled-components';
 
 const StyledMenu = styled.section`
 
-    margin-top: 2em;
-    
-    a:active, a:hover, button:active, button:hover {
-        font-weight: bold;
-        color: lightblue;
-        background: rgba(0, 0, 0, 0.5);
-        border-left: 1px solid #6537E2;
-    }
+    margin-top: 2rem;
 
     ul, li {
         display: block;
@@ -22,11 +15,13 @@ const StyledMenu = styled.section`
 
     a, button {
         text-decoration: none;
+        text-transform: uppercase;
         color: white;
         text-transform: capitalise;
-        font-size: 90%;
-        padding: 1em 3em;
-        display: block;
+        font-size: 1.2rem;
+        padding: 1rem 15%;
+        display: flex;
+        align-items: center;
         width: 100%;
         margin-left: 0;
         box-sizing: border-box;
@@ -34,7 +29,24 @@ const StyledMenu = styled.section`
         border: 0;
         text-align: left;
         cursor: pointer;
-        font-family: Monaco;
+        font-family: ${props => props.theme.fontHeader};
+        letter-spacing: .1rem;
+        margin-bottom: 2rem;
+
+        svg {
+            margin-right: 1rem;
+            font-size: 85%;
+        }
+    }
+
+    a.active, a:hover, button.active, button:hover {
+        color: ${ props => props.theme.colorAccent };
+        background: ${ props => props.theme.colorWhite };
+        border-left: .3rem solid ${ props => props.theme.colorSecondary };
+    }
+
+    a:hover svg, button:hover svg {
+        color: ${ props => props.theme.colorAccent };
     }
 `;
 

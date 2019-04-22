@@ -6,40 +6,42 @@ import MainBG from './../components/MainBG';
 import StarColumn from './../components/StarColumn';
 import Button from './../components/Button';
 
+import media from '../components/styles/media';
+
 const TextContainer = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 15vw;
+    margin-left: 5rem;
     align-items: flex-start;
 
     h1 {
-        color: #EAC93F;
-        font-size: 300%;
-        font-family: 'Lucida Grande', sans-serif;
-        margin-bottom: 15px;
+        color: ${props => props.theme.colorSecondary };
+        font-size: 5rem;
+        font-family: ${props => props.theme.fontHeader};
+        margin-bottom: 1.6rem;
+        ${media.tabletPort`
+            font-size: 3.5rem;
+        `}
     }
 
     p {
         color: white;
         font-family: Monaco, sans-serif;
         width: 55%;
-        font-size: 115%;
-        margin-top: 40px;
-        line-height: 35px;
-        margin-bottom: 50px;
+        font-size: 1.4rem;
+        margin-top: 2rem;
+        line-height: 2.5rem;
+        margin-bottom: 5rem;
+        ${media.phone`
+            width: 100%;
+        `}
     }
 
-    @media (max-width: 600px) {
-        margin-left: 5vw;
-        p {
-            width: 100%;
-        }
-        h1 {
-            font-size: 200%;
-        }
-    }
+    ${media.phone`
+        margin-left: 2rem;
+    `}
 `;
 
 const Home = () => (

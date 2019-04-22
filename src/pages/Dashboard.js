@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { NavLink, Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Sidebar from '../components/Sidebar';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome, faRetweet, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+
+
+import Sidebar from '../containers/Sidebar';
 import Menu from '../components/Menu';
 import DashboardStatistics from './subpages/DashboardStatistics';
 import Reviews from './subpages/Reviews';
@@ -11,6 +16,11 @@ import Profile from './subpages/Profile';
 import NotFound from './../components/NotFound';
 
 import { UserConsumer } from './../App';
+
+library.add(faHome)
+library.add(faRetweet)
+library.add(faUser)
+library.add(faSignOutAlt)
 
 const StyledDashboard = styled.main`
     min-height: 100vh;
@@ -49,23 +59,27 @@ class Dashboard extends Component {
                                             <NavLink exact 
                                                 to="/dashboard" 
                                                 activeClassName="active">
+                                                <FontAwesomeIcon icon="home" />
                                                 Dashboard
                                             </NavLink>
                                         </li>
                                         <li>
                                             <NavLink to="/dashboard/reviews" 
                                                 activeClassName="active">
+                                                <FontAwesomeIcon icon="retweet" />
                                                 Reviews
                                             </NavLink>
                                         </li>
                                         <li>
                                             <NavLink to="/dashboard/profile" 
                                                 activeClassName="active">
+                                                <FontAwesomeIcon icon="user" />
                                                 My Profile
                                             </NavLink>
                                         </li>
                                         <li>
                                             <button onClick={this.logout}>
+                                                <FontAwesomeIcon icon="sign-out-alt" />
                                                 Logout
                                             </button>
                                         </li>
