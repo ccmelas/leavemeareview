@@ -11,11 +11,10 @@ const StyledBG = styled.header`
     background-size: 100%, 70%;
     display: flex;
     align-items: center;
-    /* box-sizing: border-box; */
-
+    box-sizing: border-box;
     ${media.phone`
-        padding-right: 1.5rem;
-        padding-left: 1.5rem;
+        padding-right: 1.5em;
+        padding-left: 1.5em;
     `}
 `;
 

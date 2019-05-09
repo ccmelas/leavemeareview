@@ -13,8 +13,8 @@ const Card = styled.section`
 
     ${media.tabletPort`
         width: 100%;
-        padding: 1rem;
-        margin: 5rem auto;
+        padding: 1em;
+        margin: 5em auto;
     `}
 `;
 

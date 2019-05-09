@@ -47,8 +47,8 @@ const StyledReview = styled.section`
         font-family: ${props => props.theme.fontHeader };
         margin-bottom: 2px;
         ${media.tabletPort`
-            margin-top: 1rem;        
-            margin-bottom: .5rem;        
+            margin-top: 1em;        
+            margin-bottom: .5em;        
         `}
     }
 
@@ -99,7 +99,7 @@ const Ratings = styled.div`
     display: flex;
     align-items: center;
     ${media.tabletPort`
-        margin-top: 1.5rem;
+        margin-top: 1.5em;
     `}
     .gap {
         width: 2rem;
