@@ -31,7 +31,7 @@ class Login extends Component {
 
     startGoogleAuth = async () => {
         this.setState({ loading: true, errors: [] });
-        const { code } = await window.auth2.grantOfflineAccess();
+        const code = await window.auth2.signIn();
         const response = await makeRequest(`/login/google?code=${code}`);
         this.loginUser(response);
     } 

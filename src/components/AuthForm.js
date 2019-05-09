@@ -7,7 +7,7 @@ import media from './styles/media';
 const Form = styled.form`
     background: white;
     padding: 2rem;
-    box-shadow: 1px 1px 4px gray;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     width: 25%;
     margin: 0 auto;

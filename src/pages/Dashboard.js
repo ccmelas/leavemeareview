@@ -30,7 +30,7 @@ const StyledDashboard = styled.main`
 
 const DashboardContentArea = styled.section`
     flex: 1;
-    height: 85vh;
+    min-height: 85vh;
     padding: 4em;
     overflow-y: scroll;
 

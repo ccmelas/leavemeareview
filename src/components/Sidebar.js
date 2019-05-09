@@ -9,20 +9,23 @@ export const StyledSidebar = styled.div`
     width: 15%;
     background: ${props => props.theme.colorAccent};
     box-sizing: border-box;
+    transition: all .2s ease-in-out;
 
     ${media.tabletLand`
         width: 20%;
     `}
 
     ${media.tabletPort`
-        width: 100%;
-        display: none;
+        width: ${props => props.open ? '100%': '0'};
+        position: fixed;
+        z-index: 50;
+        opacity: ${props => props.open ? 1 : 0 };
     `}
 `;
 
 const TogglerStyles = styled.div`
     display: none;
-    position: absolute;
+    position: fixed;
     right: 3rem;
     top: 4rem;
     align-items: center;
@@ -69,6 +72,8 @@ const TogglerStyles = styled.div`
 
     ${media.tabletPort`
         display: flex;
+        right: 1.5rem;
+        top: 3rem;
     `}
 
 
@@ -95,9 +100,9 @@ export const Header = styled.header`
     }
 `;
 
-export const Toggler = () => (
+export const Toggler = (props) => (
     <TogglerStyles>
-        <label></label>
-        <input type="checkbox"/>
+        <label htmlFor="sidebarToggler"></label>
+        <input type="checkbox" id="sidebarToggler" onChange={(e) => props.sidebarOpen && props.sidebarOpen(e.target.checked)}/>
     </TogglerStyles>
 );

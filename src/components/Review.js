@@ -4,20 +4,9 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import StarColumn from './StarColumn';
+import media from './styles/media';
 
 const StyledReview = styled.section`
-    &:hover {
-        box-shadow: 1px 1px 4px grey;
-    }
-
-    @media (max-width: 600px) {
-        flex-direction: column;
-        height: 120px;
-        box-shadow: 1px 1px 4px grey;
-        padding-right: 20px;
-        margin-bottom: 20px;
-    }
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -25,9 +14,25 @@ const StyledReview = styled.section`
     transition: .5s ease-in all;
     border-radius: 5px;
 
+    ${media.tabletPort`
+        flex-direction: column;
+        box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
+        padding-right: 20px;
+        margin-bottom: 20px;
+    `}
+
+    &:hover {
+        box-shadow: 1px 1px 4px rgba(0,0,0, .2);
+    }
+
     .reviewer {
         display: flex;
         align-items: center;
+
+
+        ${media.tabletPort`
+            flex-direction: column;
+        `}
     }
 
     .reviewer-portfolio {
@@ -39,26 +44,36 @@ const StyledReview = styled.section`
     }
 
     .reviewer-portfolio h4 {
-        font-family: "Lucida Grande";
+        font-family: ${props => props.theme.fontHeader };
         margin-bottom: 2px;
+        ${media.tabletPort`
+            margin-top: 1rem;        
+            margin-bottom: .5rem;        
+        `}
     }
 
     .reviewer-portfolio h4 a {
         color: black;
         text-decoration: none;
+        &:hover {
+            color: ${props => props.theme.colorAccent }
+        }
     }
 
     .reviewer-portfolio p {
-        color: grey;
+        color: ${props => props.theme.colorGrayBase };
         font-size: 90%;
+        ${media.tabletPort`
+            text-align: center;
+        `}
     }
 
     .avatar-container {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        box-shadow: 1.5px 1.5px 3px #291C71;
-        border: 2px solid #291C71;
+        box-shadow: .1rem .1rem .3rem rgba(0, 0, 0, .2);
+        border: .1rem solid ${ props => props.theme.colorWhite };
     }
 
     .avatar-container img {
@@ -74,13 +89,23 @@ const RatingBar = styled.div`
     height: 8px;
     border-radius: 5px;
     background: red;
+
+    ${media.tabletPort`
+        display: none;
+    `}
 `;
 
 const Ratings = styled.div`
     display: flex;
     align-items: center;
+    ${media.tabletPort`
+        margin-top: 1.5rem;
+    `}
     .gap {
-        width: 20px;
+        width: 2rem;
+        ${media.tabletPort`
+            display: none;
+        `}
     }
 `;
 

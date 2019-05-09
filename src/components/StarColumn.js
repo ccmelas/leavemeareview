@@ -5,11 +5,14 @@ import styled from 'styled-components';
 
 const StyledStarColumn = styled.div`
     display: flex;
+
+    span:not(:last-child) img {
+        margin-right: 10px;
+    }
 `;
 
 const StyledImage = styled.img`
     width: ${ (props) => props.size === 'small' ? '18px' : '35px'};
-    margin-right: 10px;
 `;
 
 const StarColumn = (props) => {

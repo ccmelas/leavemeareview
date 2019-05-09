@@ -22,7 +22,9 @@ const theme = {
 	colorAccent: '#6537E2',
 	colorWhite: '#FFF',
 	fontHeader: "'Lucida Grande', sans-serif",
-	fontHeaderTwo: "Verdana"
+	fontHeaderTwo: "Verdana",
+	colorGrayBase: "gray",
+	colorGrayTwo: "#707070",
 };
 
 class App extends Component {

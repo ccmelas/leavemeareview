@@ -3,17 +3,24 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import star from '../images/star-yellow.svg';
+import media from './styles/media';
 
 const StyledStatCard = styled.div`
     width: 200px;
     border-radius: 10px;
-    box-shadow: 1px 1px 4px grey;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    padding: 1em 2em;
+    box-shadow: .1rem .1rem .4rem rgba(0, 0, 0, .2);
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    padding: 1rem 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    ${media.tabletPort`
+        width: 100%;
+    `}
+
+
 
     .number {
         font-size: 400%;
