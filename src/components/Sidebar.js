@@ -72,8 +72,14 @@ const TogglerStyles = styled.div`
 
     ${media.tabletPort`
         display: flex;
-        right: 1.5em;
-        top: 3em;
+        right: 1.5rem;
+        top: 3rem;
+    `}
+
+
+    ${media.phone`
+        right: 1rem;
+        top: 1.5rem;
     `}
 
 
